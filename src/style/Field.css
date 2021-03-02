@@ -1,0 +1,17 @@
+.fieldsContainer {
+  overflow-y: scroll;
+}
+
+.field {
+  position: relative;
+  border: solid 0.5rem brown;
+  margin: 0 auto;
+  background-color: greenyellow;
+  display: block;
+  padding: 0.5rem;
+}
+
+.field--selected {
+  border-color: white;
+}
+/*# sourceMappingURL=Field.css.map */

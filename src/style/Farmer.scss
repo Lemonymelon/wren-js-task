@@ -1,0 +1,40 @@
+.farmer {
+  width: 100%;
+  background-color: rgba(1, 1, 1, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__controlsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .characterInput {
+      width: 16rem;
+      text-align: center;
+    }
+    .radioInput {
+      margin: 0 1rem;
+      input,
+      label {
+        margin: auto 0.1rem;
+      }
+    }
+  }
+
+  &__controlsSubContainer {
+    border: dashed 1px black;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__fieldControls,
+  &__newSheepControls,
+  &__selectedSheepControls {
+    display: flex;
+    align-items: center;
+  }
+}

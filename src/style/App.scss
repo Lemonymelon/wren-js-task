@@ -1,0 +1,13 @@
+@import "./reset.scss";
+@import "./Field.scss";
+@import "./Sheep.scss";
+@import "./Farmer.scss";
+
+.app {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(238, 143, 66);
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
