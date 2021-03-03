@@ -7,12 +7,14 @@ const Farmer = (props: IFarmer) => {
     createField,
     addSheep,
     brandSheep,
-    // breedRandomSheep,
+    releaseSheep,
     breedSelectedSheep,
+    breedRandomSheep,
     selectedField,
     selectedSheep1,
     selectedSheep2,
   } = props;
+
   const [newFieldWidth, setNewFieldWidth] = useState<number | null>(null);
   const [newFieldHeight, setNewFieldHeight] = useState<number | null>(null);
 
@@ -119,6 +121,8 @@ const Farmer = (props: IFarmer) => {
             <input
               className="characterInput"
               name="newSheepName"
+              type="text"
+              value={newSheepName !== null ? newSheepName : ""}
               onChange={(event) => setNewSheepName(event.target.value)}
               placeholder="What is the new sheep's name?"
             ></input>
@@ -140,7 +144,22 @@ const Farmer = (props: IFarmer) => {
         </div>
 
         <div className="farmer__controlsSubContainer">
-          <div>Selected sheep</div>
+          <u>Selected sheep 1:</u>
+          <div>
+            {selectedSheep1 ? (
+              `${selectedSheep1.name} (field ${selectedField})`
+            ) : (
+              <br />
+            )}
+          </div>
+          <u>Selected sheep 2:</u>
+          <div>
+            {selectedSheep2 ? (
+              `${selectedSheep2.name} (field ${selectedField})`
+            ) : (
+              <br />
+            )}
+          </div>
 
           <div className="farmer__selectedSheepControls">
             {selectedSheep1 && !selectedSheep2 ? (
@@ -151,18 +170,26 @@ const Farmer = (props: IFarmer) => {
               <button disabled>Brand sheep</button>
             )}
             {selectedSheep1 && !selectedSheep2 ? (
-              <button>Release sheep</button>
+              <button onClick={() => releaseSheep(selectedSheep1.id)}>
+                Release sheep
+              </button>
             ) : (
               <button disabled>Release sheep</button>
             )}
 
             <br />
-            <div>{selectedSheep1 && selectedSheep1.name}</div>
-            <div>{selectedSheep2 && selectedSheep2.name}</div>
+
             {selectedSheep1 && selectedSheep2 ? (
               <button onClick={breedSelectedSheep}>Breed sheep</button>
             ) : (
               <button disabled>Breed sheep</button>
+            )}
+          </div>
+          <div>
+            {selectedField !== null ? (
+              <button onClick={breedRandomSheep}>Breed Random Sheep</button>
+            ) : (
+              <button disabled>Breed Random Sheep</button>
             )}
           </div>
         </div>

@@ -5,13 +5,8 @@ import { ISheep, IField } from "../interfaces";
 import React, { useState } from "react";
 
 const App = () => {
-  const [fields, setFields] = useState<IField[]>([
-    { id: 0, height: 3, width: 3, sheep: [], isSelected: false },
-  ]);
-  const [sheep, setSheep] = useState<ISheep[]>([
-    { name: "a", gender: "male", fieldId: 0, id: 0 },
-    { name: "b", gender: "female", fieldId: 0, id: 1 },
-  ]);
+  const [fields, setFields] = useState<IField[]>([]);
+  const [sheep, setSheep] = useState<ISheep[]>([]);
 
   const [selectedField, setSelectedField] = useState<number | null>(null);
   const [selectedSheep1Id, setSelectedSheep1Id] = useState<number | null>(null);
@@ -19,6 +14,7 @@ const App = () => {
 
   const [nextFieldId, setNextFieldId] = useState(0);
   const [nextSheepId, setNextSheepId] = useState(0);
+  const [nextMuttonId, setNextMuttonId] = useState(1);
 
   const createField = (height: number, width: number) => {
     const newField: IField = {
@@ -39,10 +35,11 @@ const App = () => {
   };
 
   const isFieldFull = (fieldId: number) => {
-    const { height, width, sheep } = fields.filter(
-      (field) => field.id === fieldId
-    )[0];
-    return height * width < sheep.length;
+    const fieldSheep = sheep.filter((sheep) => sheep.fieldId === fieldId);
+    const { height, width } = fields.filter((field) => field.id === fieldId)[0];
+    console.log(height, width, fieldSheep.length);
+
+    return height * width <= fieldSheep.length;
   };
 
   const addSheep = (
@@ -50,15 +47,19 @@ const App = () => {
     gender: "male" | "female",
     fieldId: number
   ) => {
-    const newSheep: ISheep = { name, gender, id: nextSheepId, fieldId };
-    setNextSheepId(nextSheepId + 1);
-    setSheep([...sheep, newSheep]);
+    if (selectedField !== null && !isFieldFull(selectedField)) {
+      const newSheep: ISheep = { name, gender, id: nextSheepId, fieldId };
+      setNextSheepId(nextSheepId + 1);
+      setSheep([...sheep, newSheep]);
+    } else {
+      alert("This field is full! Sheep need their personal space.");
+    }
   };
 
   const brandSheep = (sheepId: number) => {
     const tempSheep = sheep.map((sheep) => {
       sheep.id === sheepId ? (sheep.isBranded = !sheep.isBranded) : null;
-      console.log(sheep);
+
       return sheep;
     });
 
@@ -67,6 +68,7 @@ const App = () => {
 
   const releaseSheep = (sheepId: number) => {
     const tempSheep = sheep.filter((sheep) => sheep.id !== sheepId);
+    setSelectedSheep1Id(null);
     setSheep(tempSheep);
   };
 
@@ -107,40 +109,64 @@ const App = () => {
   };
 
   const breedSheep = (sheep1Id: number, sheep2Id: number, fieldId: number) => {
-    console.log(sheep1Id, sheep2Id, fieldId);
     if (!isFieldFull(fieldId)) {
       const [sheep1] = sheep.filter((sheep) => sheep.id === sheep1Id);
       const [sheep2] = sheep.filter((sheep) => sheep.id === sheep2Id);
 
-      if (sheep1.gender !== sheep2.gender) {
-        const [femaleSheep] = [sheep1, sheep2].filter(
-          (sheep) => sheep.gender === "female"
-        );
+      if (
+        sheep1.gender !== sheep2.gender &&
+        !sheep1.isBranded &&
+        !sheep2.isBranded
+      ) {
+        const breedingIsSuccessful = Math.random() < 0.5;
+        if (breedingIsSuccessful) {
+          alert(`${sheep1.name} and ${sheep2.name} are trying to have a baby.`);
 
-        Math.random() < 0.5 ? (femaleSheep.isPregnant = true) : null;
+          const newSheepGender = Math.random() < 0.5 ? "male" : "female";
 
-        const sheepWithoutPregnantSheep = sheep.filter(
-          (sheep) => sheep.id !== femaleSheep.id
-        );
+          const muttonGenerator = () => {
+            alert("Fine. Mutton it is.");
+            setNextMuttonId(nextMuttonId + 1);
+            return `Mutton${nextMuttonId}`;
+          };
 
-        setSheep([...sheepWithoutPregnantSheep, femaleSheep]);
+          let newSheepName =
+            prompt(
+              `It's a ${newSheepGender === "male" ? "boy" : "girl"}! Give ${
+                newSheepGender === "male" ? "him" : "her"
+              } a name!`
+            ) || muttonGenerator();
+
+          const newSheep: ISheep = {
+            name: newSheepName,
+            gender: newSheepGender,
+            id: nextSheepId,
+            fieldId,
+          };
+
+          setSheep([...sheep, newSheep]);
+        } else {
+          alert(
+            `${sheep1.name} and ${sheep2.name} were unsuccessful. Better luck next time!`
+          );
+        }
       } else {
-        console.log("That isn't how you make a sheep.");
+        alert("That isn't how you make a sheep.");
       }
     } else {
-      // error message
+      alert("This field is full! Sheep need their personal space.");
     }
   };
 
   const breedSelectedSheep = () => {
-    selectedSheep1Id &&
-      selectedSheep2Id &&
-      selectedField &&
+    selectedSheep1Id !== null &&
+      selectedSheep2Id !== null &&
+      selectedField !== null &&
       breedSheep(selectedSheep1Id, selectedSheep2Id, selectedField);
   };
 
   const breedRandomSheep = () => {
-    if (selectedField) {
+    if (selectedField !== null) {
       const [sheep1Id, sheep2Id] = selectTwoRandomSheepIds(selectedField);
       breedSheep(sheep1Id, sheep2Id, selectedField);
     }
@@ -174,6 +200,8 @@ const App = () => {
               sheep={sheep.filter((sheep) => sheep.fieldId === id)}
               id={id}
               isSelected={id === selectedField}
+              selectedSheep1Id={selectedSheep1Id}
+              selectedSheep2Id={selectedSheep2Id}
               key={index}
               selectField={selectField}
               selectSheep={selectSheep}

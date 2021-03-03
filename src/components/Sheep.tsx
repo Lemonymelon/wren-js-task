@@ -1,8 +1,6 @@
 import React from "react";
 import { ISheep } from "../interfaces";
 
-// import * as sheepImg from "../assets/sheep.png";
-
 const Sheep = (props: ISheep) => {
   const {
     name,
@@ -11,13 +9,16 @@ const Sheep = (props: ISheep) => {
     isBranded,
     fieldId,
     fieldIsSelected,
+    sheepSelectedNumber,
     selectSheep,
     selectField,
   } = props;
 
   return (
     <div
-      className={`sheep${isBranded ? " sheep--branded" : ""}`}
+      className={`sheep${isBranded ? " sheep--branded" : ""}${
+        sheepSelectedNumber ? ` sheep--selectedSheep${sheepSelectedNumber}` : ""
+      }`}
       onClick={(event) => {
         event.stopPropagation();
         selectField && !fieldIsSelected ? selectField(fieldId) : null;
@@ -25,8 +26,8 @@ const Sheep = (props: ISheep) => {
       }}
       key={id}
     >
-      <div>{gender}</div>
-      <div>{name}</div>
+      <div className="sheep__name">{`"${name}"`}</div>
+      <div className="sheep__gender">{gender}</div>
     </div>
   );
 };

@@ -11,6 +11,8 @@ const Field = (props: IField) => {
     sheep,
     selectField,
     selectSheep,
+    selectedSheep1Id,
+    selectedSheep2Id,
     id,
     isSelected,
   } = props;
@@ -40,6 +42,9 @@ const Field = (props: IField) => {
             isBranded={isBranded}
             fieldIsSelected={isSelected}
             key={index}
+            sheepSelectedNumber={
+              id === selectedSheep1Id ? 1 : id === selectedSheep2Id ? 2 : null
+            }
             selectSheep={selectSheep}
             selectField={selectField}
           />

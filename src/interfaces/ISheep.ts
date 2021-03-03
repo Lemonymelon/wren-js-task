@@ -5,7 +5,7 @@ export interface ISheep {
   fieldId: number;
   isBranded?: boolean;
   key?: number;
-  isPregnant?: boolean;
+  sheepSelectedNumber?: null | 1 | 2;
   fieldIsSelected?: boolean;
   selectSheep?: (sheepId: number) => void;
   selectField?: (fieldId: number) => void;

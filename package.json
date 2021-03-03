@@ -4,7 +4,8 @@
   "description": "Wren Kitchens Starter Application",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./config/webpack.config.js --open"
+    "start": "webpack-dev-server --config ./config/webpack.config.js --open",
+    "build": "webpack --config ./config/webpack.config.js"
   },
   "author": {
     "name": "Wren Kitchens"

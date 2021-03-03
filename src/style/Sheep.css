@@ -3,11 +3,36 @@
   display: inline-block;
   margin: 0.5rem;
   background-color: white;
-  height: 4rem;
-  width: 4rem;
+  height: 3.8rem;
+  width: 3.8rem;
+  text-align: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  border: solid black 0.1rem;
+}
+
+.sheep__name {
+  font-size: 0.8rem;
+}
+
+.sheep__gender {
+  font-size: 0.6rem;
 }
 
 .sheep--branded {
   background-color: green;
+}
+
+.sheep--selectedSheep1 {
+  border: solid #00eeff 0.1rem;
+}
+
+.sheep--selectedSheep2 {
+  border: solid red 0.1rem;
+}
+
+.sheep--selectedSheep1, .sheep--selectedSheep2 {
+  height: 3.8rem;
+  width: 3.8rem;
 }
 /*# sourceMappingURL=Sheep.css.map */

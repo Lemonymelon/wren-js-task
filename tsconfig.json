@@ -59,7 +59,7 @@
     },
 
     "files": [
-        "./src/index.ts",
+        "src/index.ts"
     ],
     "include": ["src", "custom.d.ts"]
     
