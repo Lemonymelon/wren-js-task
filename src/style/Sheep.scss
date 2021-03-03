@@ -1,0 +1,38 @@
+.sheep {
+  position: relative;
+  display: inline-block;
+  margin: 0.5rem;
+  background-color: white;
+  height: 3.8rem;
+  width: 3.8rem;
+  text-align: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  border: solid rgb(0, 0, 0) 0.1rem;
+
+  &__name {
+    font-size: 0.8rem;
+  }
+
+  &__gender {
+    font-size: 0.6rem;
+  }
+
+  &--branded {
+    background-color: green;
+  }
+
+  &--selectedSheep1 {
+    border: solid rgb(0, 238, 255) 0.1rem;
+  }
+
+  &--selectedSheep2 {
+    border: solid rgb(255, 0, 0) 0.1rem;
+  }
+
+  &--selectedSheep1,
+  &--selectedSheep2 {
+    height: 3.8rem;
+    width: 3.8rem;
+  }
+}
