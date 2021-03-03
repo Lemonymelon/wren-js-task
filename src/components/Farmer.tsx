@@ -130,6 +130,7 @@ const Farmer = (props: IFarmer) => {
               <button
                 onClick={() => {
                   addSheep(newSheepName, newSheepGender, selectedField);
+                  setNewSheepGender(null);
                   setNewSheepName(null);
                   setMaleIsChecked(false);
                   setFemaleIsChecked(false);
