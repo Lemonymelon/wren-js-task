@@ -2,7 +2,7 @@ import React from "react";
 import * as CSS from "csstype";
 
 import { IField } from "../interfaces";
-import Sheep from "./Sheep";
+import { Sheep } from "./index";
 
 const Field = (props: IField) => {
   const {

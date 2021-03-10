@@ -25,6 +25,7 @@ const Sheep = (props: ISheep) => {
         selectSheep && selectSheep(id);
       }}
       key={id}
+      data-test="sheep"
     >
       <div className="sheep__name">{`"${name}"`}</div>
       <div className="sheep__gender">{gender}</div>

@@ -1,5 +1,7 @@
 module.exports = {
-  setupFilesAfterEnv: ["test/setup.js"],
+  setupFilesAfterEnv: [
+    "/Users/mikelawlor/Documents/wren-js-task/test/setup.js",
+  ],
   collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.ts",
@@ -12,7 +14,7 @@ module.exports = {
   ],
   globals: {
     "ts-jest": {
-      tsConfig: "tsconfig.json",
+      tsconfig: "tsconfig.json",
     },
   },
   moduleFileExtensions: ["ts", "js", "jsx", "tsx"],
@@ -21,7 +23,7 @@ module.exports = {
     ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
       "jest-transform-stub",
   },
-  testMatch: ["**/test/**/*.test.(ts|js|jsx|tsx)"],
+  testMatch: ["**/test/*.test.(ts|js|jsx|tsx)"],
   testEnvironment: "jsdom",
   testURL: "http://localhost/",
 };

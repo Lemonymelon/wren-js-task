@@ -1,6 +1,4 @@
-import Field from "./Field";
-import Farmer from "./Farmer";
-
+import { Field, Farmer } from "./index";
 import { ISheep, IField } from "../interfaces";
 import React, { useState } from "react";
 
