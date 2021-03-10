@@ -1,8 +1,6 @@
 module.exports = {
-  setupFilesAfterEnv: [
-    "/Users/mikelawlor/Documents/wren-js-task/test/setup.js",
-  ],
-  collectCoverage: true,
+  setupFilesAfterEnv: ["./test/setup.js"],
+  collectCoverage: false,
   collectCoverageFrom: [
     "src/**/*.ts",
     "src/**/*.tsx",
