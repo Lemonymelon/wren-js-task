@@ -41,26 +41,22 @@ describe("Sheep render", () => {
           gender: "male",
           fieldId: 0,
         },
+        {
+          id: 1,
+          name: "Mutton1",
+          gender: "female",
+          fieldId: 0,
+        },
       ],
     });
 
-    // const field = findByTestAttr(wrapper, "field");
-    // expect(field.find("div.sheep")).toHaveLength(1);
+    const field = findByTestAttr(wrapper, "field");
+    expect(field.find("div.sheep")).toHaveLength(2);
+  });
+
+  it("assumes the correct class when selected", () => {
+    wrapper = setupShallow({ ...defaultFieldProps, isSelected: true });
+    const field = findByTestAttr(wrapper, "field");
+    expect(field.hasClass("field--selected")).toBe(true);
   });
 });
-
-// describe("Sheep methods", () => {
-//   let wrapper: ShallowWrapper;
-
-//   it("calls selectSheep method when sheep is clicked", () => {
-//     const mockSelectSheep = jest.fn();
-//     wrapper = setup({ ...defaultSheepProps, selectSheep: mockSelectSheep });
-//     const sheep = findByTestAttr(wrapper, "sheep");
-//     expect(mockSelectSheep).toBeCalledTimes(0);
-//     sheep.simulate("click", {
-//       stopPropagation: () => {},
-//     });
-//     expect(mockSelectSheep).toBeCalledTimes(1);
-//   });
-
-// });
