@@ -5,8 +5,8 @@ export interface IField {
   height: number;
   width: number;
   sheep: ISheep[];
-  key?: number;
   isSelected: boolean;
+  key?: number;
   selectedSheep1Id?: number | null;
   selectedSheep2Id?: number | null;
   selectField?: (fieldId: number) => void;

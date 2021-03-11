@@ -30,6 +30,7 @@ const Field = (props: IField) => {
       }}
       style={fieldInlineStyle}
       key={id}
+      data-test="field"
     >
       {sheep.map((sheep, index) => {
         const { name, gender, id, fieldId, isBranded } = sheep;
