@@ -60,3 +60,5 @@ describe("Sheep render", () => {
     expect(field.hasClass("field--selected")).toBe(true);
   });
 });
+
+// test css - sheep = field dimensions logic
