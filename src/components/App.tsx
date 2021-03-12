@@ -171,7 +171,7 @@ const App = () => {
   };
 
   return (
-    <div className="app">
+    <div className="app" data-test="App">
       <Farmer
         addSheep={addSheep}
         createField={createField}

@@ -34,7 +34,7 @@ const Farmer = (props: IFarmer) => {
   };
 
   return (
-    <div className="farmer">
+    <div className="farmer" data-field="farmer">
       <div className="farmer__controlsContainer">
         <div className="farmer__controlsSubContainer">
           <div>New field</div>
